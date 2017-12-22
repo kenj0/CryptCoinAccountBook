@@ -158,7 +158,7 @@ function calcHistory() {
 
 	// 日付順に並べる
 	g_history.sort(function(a,b) {
-		return (new Date(a.datetime) < new Date(b.datetime) ? -1 : 1);
+		return (new Date(a.datetime) <= new Date(b.datetime) ? -1 : 1);
 	});
 
 	/* 使用しているコインを全取得 */

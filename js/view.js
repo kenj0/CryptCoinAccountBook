@@ -21,7 +21,7 @@ var g_marketplaceList = ["", "bitFlyer", "Zaif", "coincheck", "bitbank", "QUOINE
 /* g_historyStrを基にテーブル表示をするためだけにAngularJSを使う。 ひとまず、他の処理はAngularJS外とする。*/
 /* そのため、AngularJS外の処理からテーブルの更新処理を読み出すために、updateHistoryDummyButton要素を経由している。これはもっとうまく実装できるはず。*/
 var app = angular.module("myApp", []); 
-app.controller("myCtrl", function($scope, $timeout, $interval, $http) { 
+app.controller("myCtrl", function($scope) { 
 	$scope.updateHistory = function() {
 		$scope.history = g_historyStr;
 
