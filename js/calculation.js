@@ -51,7 +51,7 @@ function clearTransaction() {
 	$("#num-trans-sellamount").val("");
 	$('#flag-trans-isAltAlt').prop("checked", false);
 	$('#flag-trans-isAltAlt').trigger("change");
-	$("#text-trans-AltAltJPY").val("---");
+	$("#text-trans-AltAltJPY").val("");
 	$("#text-trans-marketplace").val("");
 	$("#text-trans-comment").val("");
 }
