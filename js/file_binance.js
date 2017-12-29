@@ -8,19 +8,19 @@ function convertMarketCsv(csv_str) {
   var buff = "[";
   var lines = csv_str.split(/\r\n|\r|\n/);
   if (0 < lines.length) {
-    labels = lines[0].split(',');
+    var labels = lines[0].split(',');
     for (var i=1; i<lines.length; ++i) {
-      data = lines[i].split(',');
-      if (data.length == labels.length) {
+      var cells = lines[i].split(',');
+      if (cells.length == labels.length) {
         if (1 < i) { buff += "," }
         buff += "{";
-        for (var j=0; j<data.length; ++j) {
+        for (var j=0; j<cells.length; ++j) {
           if (0 < j) { buff += "," }
           buff += "\"" + labels[j] + "\"" + ":";
-          if ((data[j] != "" && isFinite(data[j])) || data[j] == "true" || data[j] == "false") {
-            buff += data[j];
+          if ((cells[j] != "" && isFinite(cells[j])) || cells[j] == "true" || cells[j] == "false") {
+            buff += cells[j];
           } else {
-            buff += "\"" + data[j] + "\"";
+            buff += "\"" + cells[j] + "\"";
           }
         }
         buff += "}";
@@ -43,10 +43,11 @@ function loadBinanceHistory(csv_str) {
       "sellCoin" : "",
       "sellAmount" : 0,
       "isAltTrade" : true,  // allways true for binance market tradeing
-      "altJPY" : 0,         // TODO: load JPY value
+      "altJPY" : 0,
       "marketplace" : "Binance",
       "comment" : ""
     };
+    transaction["altJPY"] = getBtcJpyPrice(transaction["datetime"].split(" ")[0])
     var market = "";
     if (g_binance_bnb_trade_list.indexOf(binance_history[i].Market) != -1) {
       market = "BNB";
