@@ -62,6 +62,9 @@ function loadBinanceHistory(csv_str) {
     }
     var resource_coin = market;
     var target_coin = binance_history[i].Market.substring(0, binance_history[i].Market.indexOf(market));
+    if (getCoinAlias(target_coin) != null) {
+      target_coin = getCoinAlias(target_coin);
+    }
     if (binance_history[i].Type == "BUY") {
       transaction["buyCoin"] = target_coin;
       transaction["sellCoin"] = resource_coin;

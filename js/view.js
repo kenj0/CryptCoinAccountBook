@@ -17,6 +17,21 @@ var g_usedCoinList = null
 var g_coinList = ["JPY", "BTC", "BCH", "ETH", "XRP", "LTC", "XMR", "IOT", "DASH", "ADA", "NEO", "EOS", "XLM", "QTUM", "ETC", "LSK", "ZEC", "XVG", "SC", "DOGE", "WAVES", "GNT", "SNT", "REP", "STRAT", "BTS", "XEM", "DGB", "BTG", "GAS", "SBD", "VTC", "NXT", "FCT", "RDD", "XZC", "STEEM", "PIVX", "OMG", "KMD", "LBC", "STORJ", "MONA", "ZENY", "XP", "TRON"];
 var g_marketplaceList = ["", "bitFlyer", "Zaif", "coincheck", "bitbank", "QUOINEX", "GMO", "POLONIEX", "BITTREX", "Liqui", "Cryptopia", "HitBTC", "CCEX", "Binance", "CryptoBridge", "CoinExchange"];
 
+var g_coinAlias = {
+  "BCC" : "BCH",
+  "IOTA" : "IOT"
+};
+
+function getCoinAlias(coin) {
+  for (key in g_coinAlias) {
+    if (key == coin) {
+      return g_coinAlias[key];
+    }
+  }
+  return null;
+};
+
+
 /*** AngularJS ***/
 /* g_historyStrを基にテーブル表示をするためだけにAngularJSを使う。 ひとまず、他の処理はAngularJS外とする。*/
 /* そのため、AngularJS外の処理からテーブルの更新処理を読み出すために、updateHistoryDummyButton要素を経由している。これはもっとうまく実装できるはず。*/
