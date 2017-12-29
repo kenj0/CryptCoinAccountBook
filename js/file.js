@@ -18,3 +18,15 @@ function saveHistory() {
   saveElem.setAttribute("href", window.URL.createObjectURL(blob));
   saveElem.setAttribute("download", "History_" + new Date());
 }
+
+function loadMarketHistory(e, callback) {
+  var selectedFile = e.target.files[0];
+  var reader = new FileReader();
+  reader.readAsText(selectedFile);
+  reader.addEventListener("load", function() {
+    // console.log(reader.result);
+    g_history = g_history.concat(loadBinanceHistory(reader.result));
+    // console.log(g_history);
+    callback();
+  })
+}

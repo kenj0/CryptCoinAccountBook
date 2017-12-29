@@ -53,6 +53,10 @@ $(function() {
       saveHistory();
     });
 
+    $('#market-history-load').on('change', function (e) {
+      loadMarketHistory(e, calcHistory);
+    });
+
     $('#btn-history-clear').on('click', function () {
       clearHistory();
       calcHistory();

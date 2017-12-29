@@ -16,11 +16,16 @@
     </div>
 
     <div class="container">
+      <h2>帳簿ファイル入出力</h2>
       <input type="file" id="file-history-load" style="display:none;">
       <button type="button" class="btn btn-primary" onClick="$('#file-history-load').click();">履歴の読み込み</button>
       <a href="#"  type="button" class="btn btn-success" id="btn-history-save">履歴の保存</a>
       <hr>
-      <h3>ポートフォリオ</h3>
+      <h2>取引所CSVファイルのインポート</h2>
+      <input type="file" id="market-history-load" style="display:none;">
+      <button type="button" class="btn btn-primary" onClick="$('#market-history-load').click();">取引履歴を開く</button>
+      <hr>
+      <h2>ポートフォリオ</h2>
       <div class="table-responsive">
         <table class="table table-striped table-hover">
           <thead>
@@ -192,6 +197,7 @@
     <script src="js/view.js"></script>
     <script src="js/calculation.js"></script>
     <script src="js/file.js"></script>
+    <script src="js/file_binance.js"></script>
     <script src="js/init.js"></script>
 
   </body>
