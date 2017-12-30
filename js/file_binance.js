@@ -47,7 +47,7 @@ function loadBinanceHistory(csv_str) {
       "marketplace" : "Binance",
       "comment" : ""
     };
-    transaction["altJPY"] = getBtcJpyPrice(transaction["datetime"].split(" ")[0])
+    transaction["altJPY"] = getJpyPrice("BTC", transaction["datetime"].split(" ")[0])
     var market = "";
     if (g_binance_bnb_trade_list.indexOf(binance_history[i].Market) != -1) {
       market = "BNB";
