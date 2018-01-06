@@ -47,6 +47,8 @@ function searchJpyPriceData(date) {
   return null;  // not found
 }
 
+var g_first_alert_for_getJpyPrice = true;
+
 function getJpyPrice(coin, date) {
   search_result = searchJpyPriceData(date);
   if(search_result != null) {
@@ -65,6 +67,11 @@ function getJpyPrice(coin, date) {
     case "DASH" : return search_result.DASH; break;
     case "BCH" : return search_result.BCH; break;
     default: return null;
+    }
+  } else {
+    if (g_first_alert_for_getJpyPrice) {
+      alert("Error: Support only 2017/01/01 to 2017/12/31.");
+      g_first_alert_for_getJpyPrice = false;
     }
   }
   return null;

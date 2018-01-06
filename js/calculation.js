@@ -94,7 +94,7 @@ function generateHistoryStr()
       "balance": balance,
       "value": value,
       "averageAcquisitionPrice": averageAcquisitionPrice,
-      "profit": transactionCalc["profit"],
+      "profit": parseInt(transactionCalc["profit"])
     });
     index++;
   });

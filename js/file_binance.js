@@ -48,6 +48,7 @@ function loadBinanceHistory(csv_str) {
   var binance_history = JSON.parse(convertBinanceMarketCsv(csv_str));
   // console.log(binance_history);
   var l_history = [];
+  var first_alert = true;
   for (var i=0; i<binance_history.length; ++i) {
     var transaction = {
       "datetime" : formatBinanceDateTime(binance_history[i].Date),
@@ -56,11 +57,10 @@ function loadBinanceHistory(csv_str) {
       "sellCoin" : "",
       "sellAmount" : 0,
       "isAltTrade" : true,  // allways true for binance market tradeing
-      "altJPY" : 0,
+      "altJPY" : "---",
       "marketplace" : "Binance",
-      "comment" : ""
+      "comment" : ("rate=" + binance_history[i].Price)
     };
-    transaction["altJPY"] = getJpyPrice("BTC", transaction["datetime"].split(" ")[0])
     var market = "";
     if (g_binance_bnb_trade_list.indexOf(binance_history[i].Market) != -1) {
       market = "BNB";
@@ -71,28 +71,47 @@ function loadBinanceHistory(csv_str) {
     } else if (g_binance_usdt_trade_list.indexOf(binance_history[i].Market) != -1) {
       market = "USDT";
     } else {
-      alert("Error: Could not parse Market column.");
+      if (first_alert) {
+        alert("Error: Could not parse Market column."); first_alert = false;
+      }
     }
-    var resource_coin = market;
+    var key_coin = market;
     var target_coin = binance_history[i].Market.substring(0, binance_history[i].Market.indexOf(market));
     if (getCoinAlias(target_coin) != null) {
       target_coin = getCoinAlias(target_coin);
     }
-    if (binance_history[i].Type == "BUY") {
-      transaction["buyCoin"] = target_coin;
-      transaction["sellCoin"] = resource_coin;
-      transaction["buyAmount"] = binance_history[i].Amount;
-      transaction["sellAmount"] = binance_history[i].Total;
-    } else if (binance_history[i].Type == "SELL") {
-      transaction["buyCoin"] = resource_coin;
-      transaction["sellCoin"] = target_coin;
-      transaction["buyAmount"] = binance_history[i].Total;
-      transaction["sellAmount"] = binance_history[i].Amount;
+    var key_coin_price = getJpyPrice(key_coin, transaction["datetime"].split(" ")[0]);
+    if (key_coin_price != null) {
+      if (binance_history[i].Type == "BUY") {
+        transaction["buyCoin"] = target_coin;
+        transaction["sellCoin"] = key_coin;
+        transaction["buyAmount"] = binance_history[i].Amount;
+        transaction["sellAmount"] = binance_history[i].Total;
+        transaction["altJPY"] = key_coin_price * binance_history[i].Total;
+      } else if (binance_history[i].Type == "SELL") {
+        transaction["buyCoin"] = key_coin;
+        transaction["sellCoin"] = target_coin;
+        transaction["buyAmount"] = binance_history[i].Total;
+        transaction["sellAmount"] = binance_history[i].Amount;
+        transaction["altJPY"] = key_coin_price * binance_history[i].Total;
+      } else {
+        if (first_alert) {
+          alert("Error: Could not parse Type column."); first_alert = false;
+        }
+      }
+      transaction["comment"] += ", " + key_coin + "/JPY=" + key_coin_price;
+      // console.log(binance_history[i]);
+      // console.log(transaction);
+      l_history.push(transaction);
     } else {
-      alert("Error: Could not parse Type column.");
+      if (key_coin == "USDT") {
+        console.log("Error: Could not apply USDT price.");
+      } else {
+        if (first_alert) {
+          alert("Error: Could not apply " + key_coin + " price."); first_alert = false;
+        }
+      }
     }
-    // console.log(transaction);
-    l_history.push(transaction);
   }
   return l_history;
 }

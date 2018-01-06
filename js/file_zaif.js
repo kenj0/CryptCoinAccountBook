@@ -68,23 +68,13 @@ function loadZaifHistory(csv_str) {
       alert("Error: Could not parse 数量 column."); first_alert = false;
     }
 
-    if (key_coin != "JPY") {
-      key_coin_price = getJpyPrice(key_coin, transaction["datetime"].split(" ")[0]);
-      if (key_coin_price != null) {
-        transaction["isAltTrade"] = true;
-        transaction["altJPY"] = key_coin_price;
-      } else {
-        if (first_alert) {
-          alert("Error: Could not apply " + key_coin + " price."); first_alert = false;
-        }
-      }
-    }
     if (getCoinAlias(key_coin) != null) {
       key_coin = getCoinAlias(key_coin);
     }
     if (getCoinAlias(target_coin) != null) {
       target_coin = getCoinAlias(target_coin);
     }
+
     var rate = key_amount;
     if (zaif_history[i].注文 == "買い") {
       transaction["buyCoin"] = target_coin;
@@ -104,6 +94,24 @@ function loadZaifHistory(csv_str) {
         alert("Error: Could not parse 注文 column."); first_alert = false;
       }
     }
+
+    if (key_coin != "JPY") {
+      var key_coin_price = getJpyPrice(key_coin, transaction["datetime"].split(" ")[0]);
+      if (key_coin_price != null) {
+        transaction["isAltTrade"] = true;
+        if (zaif_history[i].注文 == "買い") {
+          transaction["altJPY"] = key_coin_price * transaction["sellAmount"];
+        } else if (zaif_history[i].注文 == "売り") {
+          transaction["altJPY"] = key_coin_price * transaction["buyAmount"];
+        }
+        transaction["comment"] += " " + key_coin + "/JPY=" + key_coin_price;
+      } else {
+        if (first_alert) {
+          alert("Error: Could not apply " + key_coin + " price."); first_alert = false;
+        }
+      }
+    }
+
     // console.log(transaction);
     l_history.push(transaction);
   }

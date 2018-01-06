@@ -29,11 +29,14 @@ function loadMarketHistory(e, callback) {
     case 0: l_history = loadCoincheckHistory(reader.result); break;
     case 1: l_history = loadZaifHistory(reader.result); break;
     case 2: l_history = loadBinanceHistory(reader.result); break;
+    default: alert("Error: Illigal selection.");
     };
-    if (l_history != null) {
+    if (l_history != null && 0 < l_history.length) {
       // console.log(l_history);
       g_history = g_history.concat(l_history);
       // console.log(g_history);
+    } else {
+      alert("Error: Could not import input file.")
     }
     callback();
   })

@@ -202,7 +202,7 @@ function loadCoincheckHistory(csv_str) {
       "sellCoin" : "",
       "sellAmount" : 0,
       "isAltTrade" : false,  // allways false for coincheck market tradeing
-      "altJPY" : 0,
+      "altJPY" : "---",
       "marketplace" : "coincheck",
       "comment" : ("[" + coincheck_history[i].ID + "]")
     };

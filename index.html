@@ -26,7 +26,7 @@
       <h2>取引所CSVファイルのインポート</h2>
       <div class="col-sm-3">
         <select class="form-control" id="sel-market-file-type">
-          <option>coincheck -AllHistory- (CSV)</option>
+          <option selected>coincheck -AllHistory- (CSV)</option>
           <option>Zaif -TradeHistory- (CSV)</option>
           <option>Binance -TradeHistory- (CSV)</option>
           <!-- <option>Zaif -DepositHistory-</option> -->
@@ -163,7 +163,7 @@
               <th scope="col">売却通貨名</th>
               <th scope="col">売却通貨数量</th>
               <th scope="col">仮想通貨間取引</th>
-              <th scope="col">売却通貨の価額[円]</th>
+              <th scope="col">売却通貨の時価[円]</th>
               <th scope="col">残高</th>
               <th scope="col">簿価 [円]</th>
               <th scope="col">平均取得価額 [円]</th>
@@ -180,7 +180,7 @@
               <td>{{transaction.buyAmount}}</td>
               <td>{{transaction.sellCoin}}</td>
               <td>{{transaction.sellAmount}}</td>
-              <td>{{transaction.isAltTrade}}</td>
+              <td>{{(transaction.isAltTrade) ? "Yes" : "No"}}</td>
               <td>{{transaction.altJPY}}</td>
               <td><p>{{transaction.balance}}</p></td>
               <td><p>{{transaction.value}}</p></td>
