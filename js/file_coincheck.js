@@ -1,4 +1,4 @@
-function formatDateTime(datetime) {
+function formatCoincheckDateTime(datetime) {
   // console.log(datetime);
   dateObj = new Date(datetime);  // convert to Local time
   buff = dateObj.getFullYear();
@@ -155,7 +155,7 @@ function parseCoincheckMarketCsv(csv_str) {
       if (cells.length == 5) {
         var input_data = {
           "ID" : cells[0],
-          "datetime" : formatDateTime(cells[1]),
+          "datetime" : formatCoincheckDateTime(cells[1]),
           "Action" : cells[2],
           "Amount" : cells[3],
           "Coin" : cells[4],

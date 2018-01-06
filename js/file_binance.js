@@ -31,13 +31,26 @@ function convertBinanceMarketCsv(csv_str) {
   return buff;
 }
 
+function formatBinanceDateTime(datetime) {
+  // console.log(datetime);
+  dateObj = new Date(datetime + " UTC");  // convert to Local time
+  buff = dateObj.getFullYear();
+  buff += "/" + ('0' + (dateObj.getMonth() + 1)).slice(-2);
+  buff += "/" + ('0' + dateObj.getDate()).slice(-2);
+  buff += " " + ('0' + dateObj.getHours()).slice(-2);
+  buff += ":" + ('0' + dateObj.getMinutes()).slice(-2);
+  buff += ":" + ('0' + dateObj.getSeconds()).slice(-2);
+  // console.log(buff);
+  return buff;
+};
+
 function loadBinanceHistory(csv_str) {
   var binance_history = JSON.parse(convertBinanceMarketCsv(csv_str));
   // console.log(binance_history);
   var l_history = [];
   for (var i=0; i<binance_history.length; ++i) {
     var transaction = {
-      "datetime" : binance_history[i].Date.replace(/-/g, "/"),
+      "datetime" : formatBinanceDateTime(binance_history[i].Date),
       "buyCoin" :"",
       "buyAmount" : 0,
       "sellCoin" : "",
