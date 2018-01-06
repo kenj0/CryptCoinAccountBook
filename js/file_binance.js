@@ -4,7 +4,7 @@ var g_binance_eth_trade_list = ["NULSETH", "ASTETH", "EOSETH", "SNTETH", "MCOETH
 var g_binance_usdt_trade_list = ["BTCUSDT", "BCCUSDT", "LTCUSDT", "NEOUSDT", "BNBUSDT", "ETHUSDT"]
 
 
-function convertMarketCsv(csv_str) {
+function convertBinanceMarketCsv(csv_str) {
   var buff = "[";
   var lines = csv_str.split(/\r\n|\r|\n/);
   if (0 < lines.length) {
@@ -32,7 +32,7 @@ function convertMarketCsv(csv_str) {
 }
 
 function loadBinanceHistory(csv_str) {
-  binance_history = JSON.parse(convertMarketCsv(csv_str));
+  var binance_history = JSON.parse(convertBinanceMarketCsv(csv_str));
   // console.log(binance_history);
   var l_history = [];
   for (var i=0; i<binance_history.length; ++i) {

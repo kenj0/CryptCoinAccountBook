@@ -24,9 +24,18 @@ function loadMarketHistory(e, callback) {
   var reader = new FileReader();
   reader.readAsText(selectedFile);
   reader.addEventListener("load", function() {
-    // console.log(reader.result);
-    g_history = g_history.concat(loadBinanceHistory(reader.result));
-    // console.log(g_history);
+    l_history = null;
+    switch (document.getElementById("sel-market-file-type").selectedIndex) {
+    case 0: l_history = loadCoincheckHistory(reader.result); break;
+    case 1: l_history = loadBinanceHistory(reader.result); break;
+    // case 2: console.log("2: Binance (DepositHistory)"); break;
+    // case 3: console.log("3: Binance (WithdrawHistory)"); break;
+    };
+    if (l_history != null) {
+      // console.log(l_history);
+      g_history = g_history.concat(l_history);
+      // console.log(g_history);
+    }
     callback();
   })
 }
