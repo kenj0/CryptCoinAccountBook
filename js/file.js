@@ -27,9 +27,8 @@ function loadMarketHistory(e, callback) {
     l_history = null;
     switch (document.getElementById("sel-market-file-type").selectedIndex) {
     case 0: l_history = loadCoincheckHistory(reader.result); break;
-    case 1: l_history = loadBinanceHistory(reader.result); break;
-    // case 2: console.log("2: Binance (DepositHistory)"); break;
-    // case 3: console.log("3: Binance (WithdrawHistory)"); break;
+    case 1: l_history = loadZaifHistory(reader.result); break;
+    case 2: l_history = loadBinanceHistory(reader.result); break;
     };
     if (l_history != null) {
       // console.log(l_history);

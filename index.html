@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>仮想通貨取引帳簿</title>
+    <title>仮想通貨取引帳簿 (Beta版)</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,7 +12,7 @@
 
   <body ng-app="myApp" ng-controller="myCtrl">
     <div class="container">
-      <h1>仮想通貨取引帳簿</h1>
+      <h1>仮想通貨取引帳簿 (Beta版)</h1>
     </div>
 
     <hr>
@@ -20,20 +20,23 @@
     <div class="container">
       <h2>本アプリ帳簿ファイル入出力</h2>
       <input type="file" id="file-history-load" style="display:none;">
-      <button type="button" class="btn btn-primary" onClick="$('#file-history-load').click();">履歴の読み込み</button>
-      <a href="#"  type="button" class="btn btn-success" id="btn-history-save">履歴の保存</a>
+      <button type="button" class="btn btn-primary" onClick="$('#file-history-load').click();">Load</button>
+      <a href="#"  type="button" class="btn btn-success" id="btn-history-save">Save</a>
       <hr>
       <h2>取引所CSVファイルのインポート</h2>
       <div class="col-sm-3">
         <select class="form-control" id="sel-market-file-type">
-          <option>coincheck</option>
-          <option>Binance -TradeHistory-</option>
+          <option>coincheck -AllHistory- (CSV)</option>
+          <option>Zaif -TradeHistory- (CSV)</option>
+          <option>Binance -TradeHistory- (CSV)</option>
+          <!-- <option>Zaif -DepositHistory-</option> -->
+          <!-- <option>Zaif -WithdrawHistory-</option> -->
           <!-- <option>Binance -DepositHistory-</option> -->
           <!-- <option>Binance -WithdrawHistory-</option> -->
         </select>
       </div>
       <input type="file" id="market-history-load" style="display:none;">
-      <button type="button" class="btn btn-primary" onClick="$('#market-history-load').click();">取引履歴を開く</button>
+      <button type="button" class="btn btn-primary" onClick="$('#market-history-load').click();">Open</button>
       <hr>
     </div>
 
@@ -224,6 +227,7 @@
     <script src="js/file.js"></script>
     <script src="js/file_coincheck.js"></script>
     <script src="js/file_binance.js"></script>
+    <script src="js/file_zaif.js"></script>
     <script src="js/file_jpy_price.js"></script>
     <script src="js/init.js"></script>
 

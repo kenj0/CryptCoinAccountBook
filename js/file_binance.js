@@ -71,7 +71,7 @@ function loadBinanceHistory(csv_str) {
     } else if (g_binance_usdt_trade_list.indexOf(binance_history[i].Market) != -1) {
       market = "USDT";
     } else {
-      aleart("Error: Could not parse Market column.");
+      alert("Error: Could not parse Market column.");
     }
     var resource_coin = market;
     var target_coin = binance_history[i].Market.substring(0, binance_history[i].Market.indexOf(market));
@@ -89,7 +89,7 @@ function loadBinanceHistory(csv_str) {
       transaction["buyAmount"] = binance_history[i].Total;
       transaction["sellAmount"] = binance_history[i].Amount;
     } else {
-      aleart("Error: Could not parse Type column.");
+      alert("Error: Could not parse Type column.");
     }
     // console.log(transaction);
     l_history.push(transaction);
