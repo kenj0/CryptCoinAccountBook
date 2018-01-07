@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>仮想通貨取引帳簿 (Beta版)</title>
+    <title>仮想通貨取引帳簿 (2017年確定申告版)</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,7 +12,7 @@
 
   <body ng-app="myApp" ng-controller="myCtrl">
     <div class="container">
-      <h1>仮想通貨取引帳簿 (Beta版)</h1>
+      <h1>仮想通貨取引帳簿 (2017年確定申告版)</h1>
     </div>
 
     <hr>
@@ -37,9 +37,9 @@
       </div>
       <input type="file" id="market-history-load" style="display:none;">
       <button type="button" class="btn btn-primary" onClick="$('#market-history-load').click();">Open</button>
-      <hr>
+      <!-- <hr> -->
     </div>
-
+<!--
     <div class="container">
       <h2>取引の入力</h2>
       <p>日本円から仮想通貨を購入した時は、売却側にJPYと購総入金額[円]を入力してください</p>
@@ -101,50 +101,7 @@
         </div>
       </div>
     </div>
-
-    <hr>
-
-    <div class="container">
-      <h2>ポートフォリオ</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th scope="col">コイン名</th>
-              <th scope="col">残高</th>
-              <th scope="col">平均取得価額 [円]</th>
-              <th scope="col">簿価 [円]</th>
-              <!-- <th scope="col">時価 [円]</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="detail in portfolio">
-              <th scope="row">{{detail.coin}}</th>
-              <td>{{detail.balance}}</td>
-              <td>{{detail.averageAcquisitionPrice}}</td>
-              <td>{{detail.value}}</td>
-              <!-- <td>not supported yet</td> -->
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="row">
-        <div class="col-sm-1">
-          <label for="btn-profit">損益計算</label>
-          <button type="button" class="btn btn-primary" id="btn-profit">損益計算</button>
-        </div>
-        <div class="col-sm-3">
-          <label for="datetime-profit-from">対象日時 (from)</label>
-          <input type='text' class="form-control " id='datetime-profit-from' />
-        </div>
-        <div class="col-sm-3">
-          <label for="datetime-profit-to">対象日時 (to)</label>
-          <input type='text' class="form-control " id='datetime-profit-to' />
-        </div>
-      </div>
-      <h4><strong><p id="text-profit">対象期間の損益: </p></strong></h4>
-    </div>
-
+-->
     <hr>
 
     <div class="container">
@@ -196,16 +153,86 @@
     <hr>
 
     <div class="container">
-      <h2>注意、免責事項</h2>
-      本アプリケーションは、日本の税制にのっとった計算を保証するものではありません。本アプリケーションを利用することによって生ずるいかなる損害に対しても、作成者は一切責任を負いません。確定申告は自己責任で行うようにしてください。
+      <h2>ポートフォリオ</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">コイン名</th>
+              <th scope="col">残高</th>
+              <th scope="col">平均取得価額 [円]</th>
+              <th scope="col">簿価 [円]</th>
+              <!-- <th scope="col">時価 [円]</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="detail in portfolio">
+              <th scope="row">{{detail.coin}}</th>
+              <td>{{detail.balance}}</td>
+              <td>{{detail.averageAcquisitionPrice}}</td>
+              <td>{{detail.value}}</td>
+              <!-- <td>not supported yet</td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-sm-1">
+          <label for="btn-profit">損益計算</label>
+          <button type="button" class="btn btn-primary" id="btn-profit">損益計算</button>
+        </div>
+        <div class="col-sm-3">
+          <label for="datetime-profit-from">対象日時 (from)</label>
+          <input type='text' class="form-control " id='datetime-profit-from' />
+        </div>
+        <div class="col-sm-3">
+          <label for="datetime-profit-to">対象日時 (to)</label>
+          <input type='text' class="form-control " id='datetime-profit-to' />
+        </div>
+      </div>
+      <h4><strong><p id="text-profit">対象期間の損益: </p></strong></h4>
+    </div>
+
+    <hr>
+
+    <div class="container">
+      <h3>注意、免責事項</h3>
+      <b>本アプリケーションは、日本の税制にのっとった計算を保証するものではありません。
+        本アプリケーションを利用することによって生ずるいかなる損害に対しても、作成者は一切責任を負いません。
+        確定申告は自己責任で行うようにしてください。</b>
       <hr>
-      <!-- <h2>操作方法など</h2>
-      <a href = "https://github.com/take-iwiw/CryptCoinAccountBook">https://github.com/take-iwiw/CryptCoinAccountBook</a>
+
+      <h3>使用方法</h3>
+      準備中
       <hr>
-      -->
-      <h2>寄付</h2>
-      <b>originalの作者take-iwiwさんへの寄付は<a href="https://take-iwiw.github.io/CryptCoinAccountBook/">こちらのページ最下部です</a>。</b>
+
+      <h3>謝辞</h3>
+      本アプリケーションは、take-iwiwさんが開発した仮想通貨取引帳簿アプリをベースとし、
+      2017年の確定申告に限定して、各取引所の取引履歴(CSVファイル)から確定申告に必要な情報を計算するためのツールです。
+      コアの部分の開発はtake-iwiwさんが行っています。大変貴重なツールの公開をありがとうございます。この場を借りて御礼申し上げます。<br>
+      <a href="https://github.com/take-iwiw/CryptoCoinAccountBook/#寄付">take-iwiwさんへの寄付はこちらです</a>。
       <hr>
+
+      <h3>支援</h3>
+      私(kenj0)の開発を支援いただける方は、本ページ下部のアフィリエイトからまだ登録していない取引所へ登録していただければありがたいです。
+      <hr>
+
+      <h3>問い合わせ</h3>
+      <p>本アプリ(2017年確定申告版)に関するお問い合わせは<a href="http://kenj0.hatenablog.com/entry/2018/01/01/000000">こちらのフォームから入力してください。</a></p>
+      <hr>
+
+      <h3>ToDo</h3>
+      <ul>
+        <li>取引の際の支払い手数料の適用</li>
+        <li>国内取引所bitFlyerの取引履歴入力対応</li>
+        <li>取引履歴のCSVダウンロード機能追加</li>
+      </ul>
+      <hr>
+
+      <h3>バージョン履歴</h3>
+      <p><b>[2018-Jan-07]</b>    初版(Beta版)</p>
+      <hr>
+
       <table class="aff-table">
         <tr>
           <th><p><a href="https://coincheck.com/?c=e_BIUc4ZXt0" target="_blank"><img src="https://coincheck.com/images/affiliates/05_cc_banner_300x250.png" alt="ビットコイン取引高日本一の仮想通貨取引所 coincheck bitcoin" /></a></p></th>
