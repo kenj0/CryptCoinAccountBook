@@ -104,12 +104,8 @@ function loadBinanceHistory(csv_str) {
       // console.log(transaction);
       l_history.push(transaction);
     } else {
-      if (key_coin == "USDT") {
-        console.log("Error: Could not apply USDT price.");
-      } else {
-        if (first_alert) {
-          alert("Error: Could not apply " + key_coin + " price."); first_alert = false;
-        }
+      if (first_alert) {
+        alert("Error: Could not apply " + key_coin + " price."); first_alert = false;
       }
     }
   }
